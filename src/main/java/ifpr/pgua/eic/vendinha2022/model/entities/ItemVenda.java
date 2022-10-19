@@ -4,7 +4,7 @@ public class ItemVenda {
     
     private int id;
     private Produto produto;
-    private double valorVenda;
+    private double valor;
     private double quantidade;
     
     public int getId() {
@@ -19,11 +19,11 @@ public class ItemVenda {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-    public double getValorVenda() {
-        return valorVenda;
+    public double getValor() {
+        return valor;
     }
-    public void setValorVenda(double valorVenda) {
-        this.valorVenda = valorVenda;
+    public void setValorVenda(double valor) {
+        this.valor = valor;
     }
     public double getQuantidade() {
         return quantidade;

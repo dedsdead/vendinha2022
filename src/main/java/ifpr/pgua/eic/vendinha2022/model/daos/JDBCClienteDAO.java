@@ -27,7 +27,7 @@ public class JDBCClienteDAO implements ClienteDAO{
             Connection con = fabricaConexoes.getConnection();
 
             //preparando o comando sql
-            PreparedStatement pstm = con.prepareStatement("INSERT INTO clientes(nome,cpf,email,telefone) VALUES (?,?,?,?)");
+            PreparedStatement pstm = con.prepareStatement("INSERT INTO oo2_clientes(nome,cpf,email,telefone) VALUES (?,?,?,?)");
             
             //ajustando os parâmetros do comando
             pstm.setString(1, cliente.getNome());
@@ -61,7 +61,7 @@ public class JDBCClienteDAO implements ClienteDAO{
             //criando uma conexão
             Connection con = fabricaConexoes.getConnection(); 
             
-            PreparedStatement pstm = con.prepareStatement("SELECT * FROM clientes");
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM oo2_clientes");
 
             ResultSet rs = pstm.executeQuery();
             
@@ -75,6 +75,11 @@ public class JDBCClienteDAO implements ClienteDAO{
                 Cliente c = new Cliente(id,nome, cpf, email, telefone);
                 clientes.add(c);
             }
+
+            rs.close();
+            pstm.close();
+            con.close();
+            
             return clientes;
 
         }catch(SQLException e){
@@ -85,8 +90,35 @@ public class JDBCClienteDAO implements ClienteDAO{
 
     @Override
     public Cliente getById(int id) {
-        // TODO Auto-generated method stub
-        return null;
+        try{
+            //criando uma conexão
+            Connection con = fabricaConexoes.getConnection(); 
+            
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM oo2_clientes WHERE id=?");
+
+            pstm.setInt(1, id);
+
+            ResultSet rsc = pstm.executeQuery();
+
+            rsc.next();
+
+            String nome = rsc.getString("nome");
+            String cpf = rsc.getString("cpf");
+            String email = rsc.getString("email");
+            String telefone = rsc.getString("telefone");
+
+            Cliente c = new Cliente(id,nome, cpf, email, telefone);
+
+            rsc.close();
+            pstm.close();
+            con.close();
+
+            return c;
+
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override

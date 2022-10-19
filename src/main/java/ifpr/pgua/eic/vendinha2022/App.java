@@ -16,6 +16,7 @@ import ifpr.pgua.eic.vendinha2022.controllers.TelaVendas;
 import ifpr.pgua.eic.vendinha2022.controllers.ViewModels.TelaClientesViewModel;
 import ifpr.pgua.eic.vendinha2022.controllers.ViewModels.TelaNovaVendaViewModel;
 import ifpr.pgua.eic.vendinha2022.controllers.ViewModels.TelaProdutosViewModel;
+import ifpr.pgua.eic.vendinha2022.controllers.ViewModels.TelaVendasViewModel;
 import ifpr.pgua.eic.vendinha2022.model.FabricaConexoes;
 import ifpr.pgua.eic.vendinha2022.model.daos.ClienteDAO;
 import ifpr.pgua.eic.vendinha2022.model.daos.JDBCClienteDAO;
@@ -86,7 +87,7 @@ public class App extends BaseAppNavigator {
         registraTela("CLIENTES", new ScreenRegistryFXML(getClass(), "fxml/clientes.fxml", (o)->new TelaClientes(new TelaClientesViewModel(clientesRepository))));  
         registraTela("PRODUTOS", new ScreenRegistryFXML(getClass(), "fxml/produtos.fxml", (o)->new TelaProdutos(new TelaProdutosViewModel(produtosRepository))));  
         registraTela("NOVAVENDA", new ScreenRegistryFXML(getClass(), "fxml/novavenda.fxml", (o)-> new TelaNovaVenda(new TelaNovaVendaViewModel(produtosRepository, clientesRepository,vendaRepository))));
-        registraTela("VENDAS", new ScreenRegistryFXML(getClass(), "fxml/vendas.fxml", (o)-> new TelaVendas()));
+        registraTela("VENDAS", new ScreenRegistryFXML(getClass(), "fxml/vendas.fxml", (o)-> new TelaVendas(new TelaVendasViewModel(vendaRepository))));
     
     }
 

@@ -15,11 +15,12 @@
       fx:controller="ifpr.pgua.eic.vendinha2022.controllers.TelaVendas"
       >
 
-    <TableView fx:id="tbVendas">
+    <TableView fx:id="tbVendas"  onMouseClicked="#atualizar">
         <columns>
             <TableColumn text="Id" fx:id="tbcId"/>
-            <TableColumn text="Cliente" fx:id="tbcCliente"/>
             <TableColumn text="Data/Hora" fx:id="tbcDataHora"/>
+            <TableColumn text="Cliente" fx:id="tbcCliente"/>
+            <TableColumn text="Desconto" fx:id="tbcDesconto"/>
             <TableColumn text="Total da Venda" fx:id="tbcTotalVenda"/>
         </columns>
     </TableView>

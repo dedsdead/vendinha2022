@@ -2,7 +2,6 @@ package ifpr.pgua.eic.vendinha2022.model.repositories;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import ifpr.pgua.eic.vendinha2022.model.daos.ProdutoDAO;
 import ifpr.pgua.eic.vendinha2022.model.entities.Produto;

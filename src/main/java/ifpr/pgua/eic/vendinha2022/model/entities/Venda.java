@@ -27,11 +27,13 @@ public class Venda {
         this.desconto = desconto;
     }
 
-    public Venda(Cliente cliente, LocalDateTime dataHora,List<ItemVenda> itens){
+    public Venda(Cliente cliente, LocalDateTime dataHora,List<ItemVenda> itens, double total, double desconto){
         this.itens = new ArrayList<>();
         this.cliente = cliente;
         this.dataHora = dataHora;
         this.itens = itens;
+        this.total = total;
+        this.desconto = desconto;
     }
 
     public void adicionarProduto(Produto p, double quantidade){
@@ -113,5 +115,10 @@ public class Venda {
         this.desconto = desconto;
     }
 
+    @Override
+    public String toString() {
+        return "Venda [id=" + id + ", cliente=" + cliente + ", itens=" + itens + ", dataHora=" + dataHora + ", total="
+                + total + ", desconto=" + desconto + "]";
+    }
     
 }

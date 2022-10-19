@@ -109,6 +109,15 @@ public class TelaNovaVendaViewModel {
 
         ItemVenda item = new ItemVenda();
         Produto produto = produtoProperty.get();
+
+        if(quantidade > produto.getQuantidadeEstoque()){
+            return Result.fail("Quantidade deve ser menor que o estoque do produto!");
+
+        }
+
+        // ATUALIZA A QUANTIDADE EM ESTOQUE DO PRODUTO
+        produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() - quantidade);
+
         item.setProduto(produto);
         item.setQuantidade(quantidade);
         item.setValorVenda(produto.getValor());
@@ -119,7 +128,7 @@ public class TelaNovaVendaViewModel {
 
         double valor=0;
 
-        valor = itensVenda.stream().map(it->it.getQuantidade()*it.getProduto().getValor()).reduce(0.0,Double::sum);
+        valor = pegaTotal();
 
         valorTotalProperty.setValue("R$ "+valor);
         
@@ -139,9 +148,16 @@ public class TelaNovaVendaViewModel {
 
         Cliente cliente = clienteProperty.get();
 
+        // ATUALIZA OS PRODUTOS NO BANCO, COM ESTOQUE NOVO
+        for (Produto p : getProdutos())
+            produtosRepository.atualizarProduto(p.getId(), p.getNome(), p.getDescricao(), p.getValor(), p.getQuantidadeEstoque());
 
-        return vendaRepository.cadastrar(dataHora,cliente,itensVenda);
+        return vendaRepository.cadastrar(dataHora,cliente,itensVenda, pegaTotal(), 0);
 
+    }
+
+    public double pegaTotal(){
+        return itensVenda.stream().map(it->it.getQuantidade()*it.getProduto().getValor()).reduce(0.0,Double::sum);
     }
 
 

@@ -13,10 +13,10 @@ import ifpr.pgua.eic.vendinha2022.model.entities.Produto;
 import ifpr.pgua.eic.vendinha2022.model.results.Result;
 
 public class JDBCProdutoDAO implements ProdutoDAO {
-    private static final String INSERT = "INSERT INTO produtos(nome,descricao,valor,quantidadeEstoque) VALUES (?,?,?,?)";
-    private static final String UPDATE = "UPDATE produtos set nome=?, descricao=?, valor=?, quantidadeEstoque=? WHERE id=?";
-    private static final String SELECT_ALL = "SELECT * FROM produtos";
-    private static final String SELECT_ID = "SELECT * FROM produtos WHERE id=?";
+    private static final String INSERT = "INSERT INTO oo2_produtos(nome,descricao,valor,quantidadeEstoque) VALUES (?,?,?,?)";
+    private static final String UPDATE = "UPDATE oo2_produtos set nome=?, descricao=?, valor=?, quantidadeEstoque=? WHERE id=?";
+    private static final String SELECT_ALL = "SELECT * FROM oo2_produtos";
+    private static final String SELECT_ID = "SELECT * FROM oo2_produtos WHERE id=?";
     
     
     private FabricaConexoes fabricaConexoes;

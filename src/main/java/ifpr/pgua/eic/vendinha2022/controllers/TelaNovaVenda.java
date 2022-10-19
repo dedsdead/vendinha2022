@@ -89,21 +89,16 @@ public class TelaNovaVenda extends BaseController implements Initializable {
             }
         });
 
-
         tbcProduto.setCellValueFactory(item -> new SimpleStringProperty(item.getValue().getProduto().getNome()));
         tbcQuantidade.setCellValueFactory(item -> new SimpleStringProperty(item.getValue().getQuantidade()+""));
         tbcValorUnitario.setCellValueFactory(item -> new SimpleStringProperty(item.getValue().getProduto().getValor()+""));
         tbcValorItem.setCellValueFactory(item -> new SimpleStringProperty(item.getValue().getProduto().getValor()*item.getValue().getQuantidade()+""));
 
-        
         tbItens.setItems(viewModel.getItensVenda());
 
         viewModel.carregaListas();
 
-
     }
-
-
 
     @FXML
     private void adicionarItem(){
